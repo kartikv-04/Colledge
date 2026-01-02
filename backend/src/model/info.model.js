@@ -10,7 +10,7 @@ const contactSchema = new mongoose.Schema({
         type: String,
         required: true,
         trim: true,
-        unique: true
+        unique: true,
     },
     phone: {
         type: Number,
@@ -18,4 +18,4 @@ const contactSchema = new mongoose.Schema({
     }
 })
 
-const Contact = mongoose.model("Contact", contactSchema);
+export default Contact = mongoose.model("Contact", contactSchema);
