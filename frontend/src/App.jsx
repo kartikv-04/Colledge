@@ -13,7 +13,7 @@ function App() {
   const fetchContacts = async () => {
     setLoading(true)
     try {
-      const response = await fetch('http://localhost:5000/api/view-contact')
+      const response = await fetch(import.meta.env.VITE_API_URL + '/api/view-contact')
       if (!response.ok) throw new Error('Failed to fetch contacts')
       const data = await response.json()
       setContacts(data.contact || [])
@@ -36,7 +36,7 @@ function App() {
   const handleDelete = async () => {
     if (!deleteId) return;
     try {
-      const response = await fetch(`http://localhost:5000/api/delete-contact/${deleteId}`, {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/delete-contact/${deleteId}`, {
         method: 'DELETE'
       });
       if (!response.ok) throw new Error('Failed to delete');
