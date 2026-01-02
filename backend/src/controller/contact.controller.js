@@ -2,7 +2,7 @@ import Contact from "../model/info.model.js";
 
 const postContactController = async (req, res) => {
     try {
-        const { name, email, phone } = req.body;
+        const { name, email, phone, message } = req.body;
 
         // check if all fields are filled
         if (!name || !email || !phone) {
@@ -28,7 +28,8 @@ const postContactController = async (req, res) => {
         const contact = new Contact({
             name,
             email,
-            phone
+            phone,
+            message
         })
 
         // save contact
@@ -62,4 +63,20 @@ const getContactController = async (req, res) => {
     }
 }
 
-export default { postContactController, getContactController };
+const deleteContactController = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const contact = await Contact.findByIdAndDelete(id);
+
+        if (!contact) {
+            return res.status(404).json({ message: "Contact not found" });
+        }
+
+        return res.status(200).json({ message: "Contact deleted successfully" });
+    } catch (error) {
+        console.log("Error deleting contact:", error);
+        return res.status(500).json({ message: "Failed to delete contact" });
+    }
+}
+
+export { postContactController, getContactController, deleteContactController };

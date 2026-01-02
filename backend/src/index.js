@@ -3,6 +3,7 @@ import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
 import connectDB from "./config/db.js";
+import { getContactController, postContactController, deleteContactController } from "./controller/contact.controller.js";
 
 // config dotenv
 dotenv.config();
@@ -43,6 +44,11 @@ const startServer = async () => {
 };
 
 startServer();
+
+// Routes
+app.get('/api/view-contact', getContactController);
+app.post('/api/add-contact', postContactController);
+app.delete('/api/delete-contact/:id', deleteContactController);
 
 
 
