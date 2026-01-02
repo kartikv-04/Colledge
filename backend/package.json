@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "node src/index.js",
     "start": "node src/index.js",
-    "build": "npm run dev"
+    "build": "echo 'No build step required'"
   },
   "keywords": [],
   "author": "",
